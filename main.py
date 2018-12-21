@@ -1,7 +1,11 @@
 from flask import Flask, request, jsonify
 from routes.Router import Router
+from models.RoomKeeper import RoomKeeper
 
 app = Flask(__name__)
+
+room_keeper = RoomKeeper()
+router = Router(room_keeper)
 
 
 @app.route('/', methods=['GET'])
@@ -10,7 +14,7 @@ def home():
 
 @app.route('/<room_number>', methods=['GET'])
 def join_room(room_number):
-    return Router.join_room(room_number)
+    return router.join_room(room_number)
 
 @app.route('/enqueue-song/<room_number>', methods=['POST'])
 def enqueue_song(room_number):

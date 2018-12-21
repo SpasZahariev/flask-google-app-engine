@@ -1,9 +1,8 @@
 from utils.Response import Response
-from models.RoomKeeper import RoomKeeper
 
 class Router:
-    def __init__(self):
-        self.room_keeper = RoomKeeper()
+    def __init__(self, room_keeper):
+        self.room_keeper = room_keeper
 
     def create_room(self, room_number):
         result, queue = self.room_keeper.create_room(room_number)
