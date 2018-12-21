@@ -1,11 +1,40 @@
-from flask import Flask
+from flask import Flask, request, jsonify
+from routes.Router import Router
 
 app = Flask(__name__)
 
 
-@app.route('/')
-def hello_world():
-    return 'Hello World!01111111 Spas [Flask]'
+@app.route('/', methods=['GET'])
+def home():
+    return 'Welcome to NQMe! Please enter your room number'
+
+@app.route('/<room_number>', methods=['GET'])
+def join_room(room_number):
+    return Router.join_room(room_number)
+
+@app.route('/enqueue-song/<room_number>', methods=['POST'])
+def enqueue_song(room_number):
+    return room_number
+
+@app.route('/dequeue-song/<room_number>', methods=['POST'])
+def dequeue_song(room_number):
+    return room_number
+
+@app.route('/create/<room_number>', methods=['POST'])
+def create_room(room_number):
+    return room_number
+
+@app.route('/delete/<room_number>', methods=['POST'])
+def delete_room(room_number):
+    return room_number
+
+@app.route('/upvote/<room_number>', methods=['POST'])
+def upvote_song(room_number):
+    return room_number
+
+@app.route('/downvote/<room_number>', methods=['POST'])
+def downvote_song(room_number):
+    return room_number
 
 
 if __name__ == '__main__':
